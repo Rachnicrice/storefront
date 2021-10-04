@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { activate } from '../store/store.js';
+
+let num=0;
 
 const Categories = (props) => {
 
@@ -7,7 +10,7 @@ const Categories = (props) => {
     <>
      <h2>Categories</h2>
      {props.storefront.categories.map(category => {
-          return <p>
+          return <p onClick={() => props.activate(category)} key={num++}>
             {category.name}
           </p>
       })}
@@ -19,4 +22,6 @@ const mapStateToProps = state => ({
   storefront: state.storefront,
 });
 
-export default connect(mapStateToProps)(Categories);
+const mapDispatchToProps = { activate };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

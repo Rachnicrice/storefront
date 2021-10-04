@@ -14,15 +14,7 @@ export default (state = initialState, action) => {
   
   switch (type) {
     case 'ACTIVATE_CATEGORY':
-      let totalVotes = state.totalVotes + 1;
-      let candidates = state.candidates.map(candidate => {
-        if (candidate.name === payload) {
-          return { name: candidate.name, votes: candidate.votes + 1 }
-        }
-        return candidate;
-      })
-
-      return { totalVotes, candidates };
+      return {...state, activeCategory: payload};
 
     case 'RESET':
       return initialState
@@ -32,11 +24,11 @@ export default (state = initialState, action) => {
 }
 
 // an action creator is a function that RETURNS an ACTION
-export const increment = (name) => {
-  // action is an object literal with a type and a payload (optional)
+export const activate = (payload) => {
+  console.log(payload);
   return {
-    type: 'INCREMENT',
-    payload: name
+    type: 'ACTIVATE_CATEGORY',
+    payload: payload,
   }
 }
 
