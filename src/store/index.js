@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import counter from './store.js';
+import storefront from './store.js';
 
-let reducers = combineReducers({ counter });
+let reducers = combineReducers({ storefront });
 
 const store = () => {
   return createStore(reducers, composeWithDevTools());

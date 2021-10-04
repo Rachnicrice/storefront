@@ -5,7 +5,7 @@ let initialState = {
     { name: 'Fantasy', products: [ { title:'The Name of the Wind' } ] },
     { name: 'Young Adult', products: [ { title:'An Ember in the Ashes' } ] }
   ],
-  activeCategory: 'DEFAULT',
+  activeCategory: { name: 'Fantasy', products: [ { title:'The Name of the Wind' } ] },
 }
 
 // a reducer is a pure function that is meant to eval an action type
@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
   let { type, payload } = action;
   
   switch (type) {
-    case 'VIEW_CATEGORY':
+    case 'ACTIVATE_CATEGORY':
       let totalVotes = state.totalVotes + 1;
       let candidates = state.candidates.map(candidate => {
         if (candidate.name === payload) {
