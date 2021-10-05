@@ -43,6 +43,12 @@ export default (state = initialState, action) => {
         return product
       });
 
+    case 'ADD':
+      return state;
+
+    case 'REMOVE':
+      return state;
+
     case 'RESET':
       return initialState
     default:

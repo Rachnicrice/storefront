@@ -35,9 +35,7 @@ export default (state = initialState, action) => {
   }
 }
 
-// an action creator is a function that RETURNS an ACTION
 export const activate = (payload) => {
-  console.log(payload);
   return {
     type: 'ACTIVATE_CATEGORY',
     payload: payload,

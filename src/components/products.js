@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { addToCart } from '../store/reducers/cart';
 
 const Products = (props) => {
 
   return (
     <>
      <h3>Products</h3>
-     {console.log('products: ',props.products)}
-     {props.products.map(product => {
+     {props.products.map((product, i) => {
        if (product.display) {
-          return <p>
+          return <p onDoubleClick={() => props.addToCart(product)} key={i}>
             {product.name}
           </p>
        } else {
@@ -24,4 +24,6 @@ const mapStateToProps = state => ({
   products: state.products,
 });
 
-export default connect(mapStateToProps)(Products);
+const mapDispatchToProps = { addToCart };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
