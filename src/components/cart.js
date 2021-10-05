@@ -6,7 +6,7 @@ const Cart = (props) => {
 
   return (
     <>
-     <h2>Cart</h2>
+     <h2>Cart: {props.cart.length}</h2>
      {props.cart.map((item, i) => {
           return <p onDoubleClick={() => props.removeFromCart(item)} key={i}>
             {item.name}
