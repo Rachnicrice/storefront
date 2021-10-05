@@ -6,17 +6,22 @@ const Products = (props) => {
   return (
     <>
      <h3>Products</h3>
-     {props.storefront.activeCategory.products.map(product => {
+     {console.log('products: ',props.products)}
+     {props.products.map(product => {
+       if (product.display) {
           return <p>
-            {product.title}
+            {product.name}
           </p>
+       } else {
+         return null;
+       }
       })}
     </>
   );
 };
 
 const mapStateToProps = state => ({
-  storefront: state.storefront,
+  products: state.products,
 });
 
 export default connect(mapStateToProps)(Products);
