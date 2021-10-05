@@ -33,21 +33,36 @@ export default (state = initialState, action) => {
   switch (type) {
     case 'ACTIVATE_CATEGORY':
       return state.map( product => {
-        if ( payload.name === 'all' ) {
-          product.display = true;
-        } else if (product.category === payload.name) {
-          product.display = true;
-        } else {
-          product.display = false;
+        if (product.inventoryCount > 0) {
+          if ( payload.name === 'all' ) {
+            product.display = true;
+          } else if (product.category === payload.name) {
+            product.display = true;
+          } else {
+            product.display = false;
+          }
         }
         return product
       });
 
     case 'ADD':
-      return state;
+      return state.map( product => {
+        if ( product === payload ) {
+          if ( product.inventoryCount === 1 ) {
+            product.display = false;
+          } 
+          product.inventoryCount--;
+        }
+        return product
+      });
 
     case 'REMOVE':
-      return state;
+      return state.map( product => {
+        if ( product === payload ) {
+          product.inventoryCount++;
+        }
+        return product
+      });
 
     case 'RESET':
       return initialState
