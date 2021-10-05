@@ -1,17 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { activate } from '../store/store.js';
-
-let num=0;
+import { activate } from '../store/reducers/categories.js';
 
 const Categories = (props) => {
 
   return (
     <>
      <h2>Categories</h2>
-     {props.storefront.categories.map(category => {
-          return <p onClick={() => props.activate(category)} key={num++}>
-            {category.name}
+     {props.storefront.categories.map((category, i) => {
+          return <p onClick={() => props.activate(category)} key={i}>
+            {category.displayName}
           </p>
       })}
     </>
@@ -19,7 +17,7 @@ const Categories = (props) => {
 };
 
 const mapStateToProps = state => ({
-  storefront: state.storefront,
+  storefront: state.categories,
 });
 
 const mapDispatchToProps = { activate };
