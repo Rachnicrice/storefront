@@ -1,17 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { activate } from '../store/reducers/categories.js';
+import { Button, ButtonGroup } from '@mui/material';
 
 const Categories = (props) => {
 
   return (
     <>
-     <h2>Categories</h2>
-     {props.storefront.categories.map((category, i) => {
-          return <p onClick={() => props.activate(category)} key={i}>
-            {category.displayName}
-          </p>
-      })}
+     <ButtonGroup>
+      {props.storefront.categories.map((category, i) => {
+            return <Button color="inherit" onClick={() => props.activate(category)} key={i}>
+              {category.displayName}
+            </Button>
+        })}
+     </ButtonGroup>
     </>
   );
 };
